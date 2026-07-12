@@ -13,17 +13,13 @@ jobs:
       - name: Checkout Repository
         uses: actions/checkout@v4
 
-      - name: Deploy to EC2
+      - name: Test SSH Connection
         uses: appleboy/ssh-action@v1.2.0
         with:
           host: ${{ secrets.HOST }}
           username: ${{ secrets.USERNAME }}
           key: ${{ secrets.SSH_KEY }}
           script: |
-            cd ~/DevOps-Assignment
-
-            git pull origin main
-
-            sudo systemctl restart flask
-
-            sudo systemctl status flask --no-pager
+            echo "Connected Successfully"
+            hostname
+            pwd
